@@ -43,11 +43,6 @@ function convertMs(ms) {
   
     return { days, hours, minutes, seconds };
   }
-  
-  console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-  console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-  console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
-
 
   function startTimer() {
     const selectedDate = inputEl.selectedDates[0];
@@ -55,7 +50,6 @@ function convertMs(ms) {
     timerId = setInterval(() => {
       const startTime = new Date();
       const gapTime = selectedDate - startTime;
-      console.log(gapTime);
       refs.start.disabled = true;
       if (gapTime < 0) {
         clearInterval(timerId);
@@ -66,13 +60,13 @@ function convertMs(ms) {
   }
 
   function changeMarkup ({ days, hours, minutes, seconds }){
-    refs.day.textContent = addZero(days),
-    refs.hour.textContent = addZero(hours),
-    refs.minute.textContent = addZero(minutes),
-    refs.second.textContent = addZero(seconds)
+    refs.day.textContent = addLeadingZero(days),
+    refs.hour.textContent = addLeadingZero(hours),
+    refs.minute.textContent = addLeadingZero(minutes),
+    refs.second.textContent = addLeadingZero(seconds)
   }
 
-  function addZero(value) {
+  function addLeadingZero(value) {
     return String(value).padStart(2, '0');
   }
 
