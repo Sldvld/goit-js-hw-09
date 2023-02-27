@@ -15,7 +15,7 @@ function onSubmitForm(e) {
 
   let { delay, step, amount } = dataParams;
   for (let i = 1; i <= amount; i += 1) {
-    delay += step;
+
 
     createPromise(i, delay)
       .then(({ position, delay }) => {
@@ -24,6 +24,7 @@ function onSubmitForm(e) {
       .catch(({ position, delay }) => {
         Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
+      delay += step;
   }
   form.reset();
 }
